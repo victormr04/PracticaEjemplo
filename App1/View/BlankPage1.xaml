@@ -14,6 +14,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,21 +27,22 @@
         <TextBlock Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"/>
         <TextBlock Text="Texto Ejemplo" Grid.Column="0" Grid.Row="0"/>
         <Button Command="{Binding CambiarNombre}" Grid.Column="1" Background="AliceBlue" Grid.Row="1" Margin="0,12,0,0" Content="Pulsa"/>
-        <Image Grid.Column="2" Grid.Row="0" Source="{Binding Url}"/>
+        <Image Grid.Column="2" Grid.Row="0" Source="{Binding Url}" MaxWidth="30" MaxHeight="30"/>
         <Button Command="{Binding Insert}" Grid.Column="2" Background="AliceBlue" Grid.Row="1" Margin="0,12,0,0" Content="Pulsa"/>
         <TextBlock Grid.Row="3">
-            <Run Text="Toy "/>
-            <Run Text="{Binding Texto}"/>
+            <Run Text="Estado"/>
+            <Run Text="{Binding Texto, Mode=TwoWay}"/>
         </TextBlock>
-        <Button Command="{Binding Dalay}" Grid.Column="1" Grid.Row="4" Content="chiquibai"/>
+        <Button Command="{Binding Dalay}" Grid.Column="1" Grid.Row="4" Content="Hilos (Supongo)"/>
         <ProgressRing
             HorizontalAlignment="Left"
-            IsActive="{Binding Corre, Mode=TwoWay}"
+            IsActive="{Binding Run,Mode=TwoWay}"
+            
             Grid.Row="5"/>
         <TextBox PlaceholderText="Texto se actualiza al escribir" Text="{Binding TextoVivo , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3"/>
         <TextBlock Text="{Binding TextoVivo, Mode=OneWay}"  Grid.Column="4" Grid.Row="4"/>
         <Button Command="{Binding IncrementaCommand}"  Grid.Column="2" Grid.Row="6" Background="Azure" Content="un +5 cada 5 sec"/>
         <TextBlock Text="{Binding Contador}" Grid.Column="3" Grid.Row="6"/>
-        <TextBlock Text="{Binding Coso}" Grid.Column="3" Grid.Row="6" Margin="4,0"/>
+        <TextBlock Text="{Binding Coso}" Grid.Column="4" Grid.Row="6" Margin="4,0"/>
     </Grid>
 </Page>

@@ -13,6 +13,7 @@ namespace App1.ViewModel
 {
     public class ExViewModel : ObservableRecipient
     {
+        
         public ExViewModel() {
             CambiarNombre = new RelayCommand(cambinombre);
             Insert = new RelayCommand (insertarimagen);
@@ -22,40 +23,68 @@ namespace App1.ViewModel
         }
         
 
-
+        #region funciones
         private async Task<string> texto()
         {
-
+            
 
             Texto = "Espera"; 
-            await Task.Delay(1000);
+            Run= true;
+            await Task.Delay(2000);
+         
+            if (Dalay.IsRunning) { 
+                Texto = "ye";
+                Run = false;
+            }
+            await Task.Delay(2000);
 
-            if (Dalay.IsRunning) Texto ="ye";
-            return Texto;
+            return Texto ="Inactivo";
 
         }
-
-        private void cambinombre() => Nombre = "Paco";
+        
+        private void cambinombre() {
+            Clicksn++;
+            if (Clicksn == 3)
+            {
+                Nombre = "Sacatapa";
+            }
+            else
+            {
+                Nombre = "Paco";
+            }
+        }
         private async Task<int> incre()
         {
             await Task.Delay (5000);
-          if (Contador == 15)
+            Contador = Contador + 5;
+            Clicks++;
+           if (Clicks == 1) { 
+                Coso = "Le diste "+ Clicks + "  vez";
+           }
+            else
             {
-                Coso = "Le diste 3 veces";
+                Coso = "Le diste " + Clicks + "  veces";
             }
-            
-            return Contador = Contador + 5;
+
+            return Contador;
           
         }
-        private void insertarimagen() => Url = "https://images9.engageya.com/02/e1/website_249324/b7/38/8a/images9.engageya.com.engageyaf22794a7-436c-4100-a31a-6e2f5ea11e6a_new_post_image_951064_25.jpg";
+        private void insertarimagen() => Url = "https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/SunnyDayV3.svg";
+        #endregion 
+
 
         #region propiedades
-        public bool Semueve = false;
+       
         private string _texto;
         public string Texto
         {
             get=> _texto; set => SetProperty(ref _texto, value);
-        } 
+        }
+        private bool _run;
+        public bool Run
+        {
+            get => _run; set => SetProperty(ref _run, value);
+        }
         private string _coso;
         public string Coso
         {
@@ -86,6 +115,18 @@ namespace App1.ViewModel
         {
             get => _contador;
             set => SetProperty(ref _contador, value);
+        }
+        private int _clicks;
+        public int Clicks
+        {
+            get => _clicks;
+            set => SetProperty(ref _clicks, value);
+        }
+        private int _clicksn;
+        public int Clicksn
+        {
+            get => _clicksn;
+            set => SetProperty(ref _clicksn, value);
         }
         #region command
         public ICommand CambiarNombre { get; set; }
