@@ -35,6 +35,10 @@ namespace App1.ViewModel
             if (Dalay.IsRunning) { 
                 Texto = "ye";
                 Run = false;
+                Texto = "ye";
+                await Task.Delay(1000);
+                Run = true;
+                
             }
             await Task.Delay(2000);
 
